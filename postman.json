@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "UK Police API Local Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { "name": "Available Data", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/available-data", "host": ["localhost:1967"], "path": ["api", "v1", "available-data"] } } },
+    { "name": "Categories", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/categories", "host": ["localhost:1967"], "path": ["api", "v1", "categories"] } } },
+    { "name": "Forces", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/forces", "host": ["localhost:1967"], "path": ["api", "v1", "forces"] } } },
+    { "name": "Last Updated", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/last-updated", "host": ["localhost:1967"], "path": ["api", "v1", "last-updated"] } } },
+    { "name": "Street Level Crimes", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/street-level-crimes", "host": ["localhost:1967"], "path": ["api", "v1", "street-level-crimes"] } } },
+    { "name": "Stop Search No Location", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/stop-search-no-location", "host": ["localhost:1967"], "path": ["api", "v1", "stop-search-no-location"] } } },
+    { "name": "Stop Search Area", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/stop-search-area", "host": ["localhost:1967"], "path": ["api", "v1", "stop-search-area"], "query": [{"key":"lat","value":"52.629729"},{"key":"lng","value":"-1.131592"}] } } },
+    { "name": "Stop Search Location", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/stop-search-location", "host": ["localhost:1967"], "path": ["api", "v1", "stop-search-location"], "query": [{"key":"lat","value":"52.629729"},{"key":"lng","value":"-1.131592"}] } } },
+    { "name": "Stop Search Force", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/stop-search-force", "host": ["localhost:1967"], "path": ["api", "v1", "stop-search-force"], "query": [{"key":"force","value":"leicestershire"}] } } },
+    { "name": "Crimes No Location", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/crimes-no-location", "host": ["localhost:1967"], "path": ["api", "v1", "crimes-no-location"], "query": [{"key":"category","value":"all-crime"},{"key":"force","value":"leicestershire"},{"key":"date","value":"2024-01"}] } } },
+    { "name": "Outcomes At Location", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/outcomes-at-location", "host": ["localhost:1967"], "path": ["api", "v1", "outcomes-at-location"], "query": [{"key":"lat","value":"52.629729"},{"key":"lng","value":"-1.131592"}] } } },
+    { "name": "Crimes At Location", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/crimes-at-location", "host": ["localhost:1967"], "path": ["api", "v1", "crimes-at-location"], "query": [{"key":"lat","value":"52.629729"},{"key":"lng","value":"-1.131592"}] } } },
+    { "name": "Locate Neighbourhood", "request": { "method": "GET", "url": { "raw": "http://localhost:1967/api/v1/locate-neighbourhood", "host": ["localhost:1967"], "path": ["api", "v1", "locate-neighbourhood"], "query": [{"key":"postcode","value":"LE1"}] } } }
+  ]
+}
