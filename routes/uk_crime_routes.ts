@@ -47,13 +47,11 @@ router.get("/crimes-no-location", getCrimesNoLocation); // needs query params
 
 router.get("/neighbourhoods/:forceId", getNeighbourhoods);
 router.get("/neighbourhood/:forceId/:neighbourhoodId", getNeighbourhood);
-router.get("/:forceId/:neighbourhoodId/boundary", (ctx) => {
-  ctx.response.body = {
-    message: "Matched forceId/neighbourhoodId/boundary",
-    forceId: ctx.params.forceId,
-    neighbourhoodId: ctx.params.neighbourhoodId,
-  };
-});
+router.get(
+  "/neighbourhood/:forceId/:neighbourhoodId/boundary",
+  getNeighbourhoodBoundary,
+);
+
 router.get(
   "/neighbourhood-team/:forceId/:neighbourhoodId",
   getNeighbourhoodTeam,
