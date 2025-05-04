@@ -48,7 +48,7 @@ router.get("/crimes-no-location", getCrimesNoLocation); // needs query params
 router.get("/neighbourhoods/:forceId", getNeighbourhoods);
 router.get("/neighbourhood/:forceId/:neighbourhoodId", getNeighbourhood);
 router.get(
-  "/neighbourhood-boundary/:forceId/:neighbourhoodId",
+  "/:forceId/:neighbourhoodId/boundary",
   getNeighbourhoodBoundary,
 );
 router.get(
