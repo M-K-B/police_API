@@ -7,13 +7,21 @@ import {
   handleQueryFetch,
   handleSimpleFetch,
 } from "../helper/fetchHelpers.ts";
+import { supabase } from "../services/db.ts";
 
 // Static endpoints
 const getAvailableData = (ctx: Context) =>
   handleSimpleFetch(ctx, Endpoint.AVAILABILITY);
+
 const getCategories = (ctx: Context) =>
   handleSimpleFetch(ctx, Endpoint.CATEGORIES);
-const getForces = (ctx: Context) => handleSimpleFetch(ctx, Endpoint.FORCES);
+
+const getForces = async (ctx: Context) => {
+  const { data, error } = await supabase.from("forces").select("*");
+  ctx.response.status = error ? 500 : 200;
+  ctx.response.body = error ?? data;
+};
+
 const getLastUpdate = (ctx: Context) =>
   handleSimpleFetch(ctx, Endpoint.LAST_UPDATED);
 
@@ -50,20 +58,43 @@ const getForcePeople = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.FORCE_PEOPLE, { force: ctx.params.forceId });
 
 // Neighbourhoods
-const getNeighbourhoods = (ctx: Context) =>
-  handlePathReplace(ctx, Endpoint.NEIGHBOURHOODS, {
-    force: ctx.params.forceId,
-  });
+const getNeighbourhoods = async (ctx: Context) => {
+  const forceId = ctx.params.forceId;
+  if (!forceId) {
+    ctx.response.status = 400;
+    ctx.response.body = { error: "forceId is required" };
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("neighbourhoods")
+    .select("*")
+    .eq("force_id", forceId);
+
+  ctx.response.status = error ? 500 : 200;
+  ctx.response.body = error ?? data;
+};
 const getNeighbourhood = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD, {
     force: ctx.params.forceId,
     neighbourhood: ctx.params.neighbourhoodId,
   });
-const getNeighbourhoodBoundary = (ctx: Context) =>
-  handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD_BOUNDARY, {
-    force: ctx.params.forceId,
-    neighbourhood: ctx.params.neighbourhoodId,
-  });
+const getNeighbourhoodBoundary = async (ctx: Context) => {
+  const neighbourhoodId = ctx.params.neighbourhoodId;
+  if (!neighbourhoodId) {
+    ctx.response.status = 400;
+    ctx.response.body = { error: "neighbourhoodId is required" };
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("boundary")
+    .select("latitude, longitude")
+    .eq("neighbourhood_id", neighbourhoodId).select();
+
+  ctx.response.status = error ? 500 : 200;
+  ctx.response.body = error ?? data;
+};
 const getNeighbourhoodTeam = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD_TEAM, {
     force: ctx.params.forceId,
