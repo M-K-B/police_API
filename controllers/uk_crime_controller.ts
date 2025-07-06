@@ -38,14 +38,17 @@ const getCrimesNoLocation = (ctx: Context) =>
   ]);
 const getOutcomesAtLocation = (ctx: Context) =>
   handleQueryFetch(ctx, Endpoint.OUTCOMES_AT_LOCATION, ["lat", "lng"]);
+
 const locateNeighbourhood = (ctx: Context) =>
   handleQueryFetch(ctx, Endpoint.LOCATE_NEIGHBOURHOOD, ["q"]);
 
 // Stop and search
 const getStopSearchNoLocation = (ctx: Context) =>
   handleQueryFetch(ctx, Endpoint.STOP_SEARCH_NO_LOCATION, ["force"]);
+
 const getStopSearchArea = (ctx: Context) =>
   handleFlexibleQueryFetch(ctx, Endpoint.STOP_SEARCH_AREA);
+
 const getStopSearchLocation = (ctx: Context) =>
   handleQueryFetch(ctx, Endpoint.STOP_SEARCH_LOCATION, ["location_id"]);
 const getStopSearchForce = (ctx: Context) =>
@@ -54,6 +57,7 @@ const getStopSearchForce = (ctx: Context) =>
 // Forces with path params
 const getForce = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.FORCE, { force: ctx.params.forceId });
+
 const getForcePeople = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.FORCE_PEOPLE, { force: ctx.params.forceId });
 
@@ -79,6 +83,7 @@ const getNeighbourhood = (ctx: Context) =>
     force: ctx.params.forceId,
     neighbourhood: ctx.params.neighbourhoodId,
   });
+
 const getNeighbourhoodBoundary = async (ctx: Context) => {
   const neighbourhoodId = ctx.params.neighbourhoodId;
   if (!neighbourhoodId) {
@@ -95,16 +100,19 @@ const getNeighbourhoodBoundary = async (ctx: Context) => {
   ctx.response.status = error ? 500 : 200;
   ctx.response.body = error ?? data;
 };
+
 const getNeighbourhoodTeam = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD_TEAM, {
     force: ctx.params.forceId,
     neighbourhood: ctx.params.neighbourhoodId,
   });
+
 const getNeighbourhoodEvents = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD_EVENTS, {
     force: ctx.params.forceId,
     neighbourhood: ctx.params.neighbourhoodId,
   });
+
 const getNeighbourhoodPriorities = (ctx: Context) =>
   handlePathReplace(ctx, Endpoint.NEIGHBOURHOOD_PRIORITIES, {
     force: ctx.params.forceId,

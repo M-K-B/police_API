@@ -6,14 +6,14 @@ const app = new Application();
 
 // Enable CORS globally
 
-/*app.use(
+app.use(
   oakCors({
-    origin: "", // your frontend URL
+    origin: "*", 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Authorization", "Content-Type"],
   }),
 );
-*/
+
 // Your routes after CORS
 
 app.use(async (ctx, next) => {
