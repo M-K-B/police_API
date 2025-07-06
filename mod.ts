@@ -16,6 +16,10 @@ app.use(
 
 // Your routes after CORS
 
+app.use((ctx, next) => {
+  ctx.response.headers.set('Access-Control-Allow-Origin', '*')
+  return next()
+})
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
