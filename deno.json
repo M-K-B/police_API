@@ -13,5 +13,12 @@
     ],
     "include": [],
     "entrypoint": "main.ts"
-  }
+  },
+  
+  "kvNamespaces": [
+    {
+      "binding": "main", 
+      "id": "437eccb6-874e-47db-b291-273ae4a624d1" 
+    }
+  ]
 }
